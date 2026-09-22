@@ -11,6 +11,8 @@ class AnyType(str):
 any = AnyType("*")
 
 class UnloadModelNode:
+    OUTPUT_NODE = True
+
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -51,10 +53,12 @@ class UnloadModelNode:
             torch.cuda.ipc_collect()
         except:
             print("   - Unable to clear cache")
-        #time.sleep(2) # why?
-        return (list(kwargs.values()))
+        return (kwargs.get("value"),)
+
 
 class UnloadAllModelsNode:
+    OUTPUT_NODE = True
+
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -81,8 +85,7 @@ class UnloadAllModelsNode:
             torch.cuda.ipc_collect()
         except:
             print("   - Unable to clear cache")
-        #time.sleep(2) # why?
-        return (list(kwargs.values()))
+        return (kwargs.get("value"),)
 
 
 NODE_CLASS_MAPPINGS = {
