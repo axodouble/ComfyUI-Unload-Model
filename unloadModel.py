@@ -55,7 +55,6 @@ class UnloadModelNode:
             print("   - Unable to clear cache")
         return (kwargs.get("value"),)
 
-
 class UnloadAllModelsNode:
     OUTPUT_NODE = True
 
